@@ -7,18 +7,30 @@
 # > reverse_me
 # em_esrever
 
-puts "Enter a string:"
-string = gets.chomp
-length = string.length
-counter = 0
-index = length
-new_string = ''
+class Reverse
 
-while counter <= length
-  character = "#{string[index]}"
-  new_string << character
-  counter += 1
-  index -= 1
+  def initialize
+    puts "Enter a string"
+    @string = gets.chomp
+  end
+
+  def reverse_string
+    counter = 0
+    length = @string.length
+    index = length
+    reversed_string = ''
+
+    while counter <= length
+      character = "#{@string[index]}"
+      reversed_string << character
+      counter += 1
+      index -= 1
+    end
+
+    reversed_string
+  end
+
 end
 
-puts new_string
+reverse_test = Reverse.new
+p reverse_test.reverse_string

@@ -1,66 +1,52 @@
-# Create a 9 x 9 multiplication table. Make sure to pay attention to spacing! Make it look nice!
+class MultiplicationTable
 
-def column_headings(columns)
-  n = 1
-  columns.times do
-    print "    #{n}"
-    n += 1
+  def initialize(rows, columns)
+    @total_rows = rows
+    @total_columns = columns
   end
 
-  2.times do
-    puts ''
+  def print_column_headings
+    n = 1
+    @total_columns.times do
+      print "    #{n}"
+      n += 1
+    end
+
+    print "\n\n"
   end
-end
 
-def multiplication_table(rows, columns)
-  column_headings(columns)
-  row = 1
-
-  while row <= rows
-    column = 1
+  def print_row_heading(row)
     print "#{row}|  "
-    while column <= columns
+  end
+
+  def print_number(number)
+    if number.to_s.length == 1
+      print "#{number}    "
+    else
+      print "#{number}   "
+    end
+  end
+
+  def print_row(row)
+    column = 1
+    while column <= @total_columns
       number = row*column
-      if number.to_s.length == 1
-        print "#{number}    "
-      else
-        print "#{number}   "
-      end
+      print_number(number)
       column += 1
     end
-    row += 1
-    print "\n"
   end
+
+  def create_table
+    print_column_headings
+    row = 1
+    while row <= @total_rows
+      print_row_heading(row)
+      print_row(row)
+      print "\n"
+      row += 1
+    end
+  end
+
 end
 
-multiplication_table(5, 10)
-
-
-
-# 9x9:
-
-# n = 1
-# 9.times do
-#   print "    #{n}"
-#   n += 1
-# end
-# puts ''
-# puts ''
-#
-# row = 1
-#
-# while row <= 9
-#   column = 1
-#   print "#{row}|  "
-#   while column <= 9
-#     number = row*column
-#     if number.to_s.length == 1
-#       print "#{number}    "
-#     else
-#       print "#{number}   "
-#     end
-#     column += 1
-#   end
-#   row += 1
-#   print "\n"
-# end
+MultiplicationTable.new(9,9).create_table
