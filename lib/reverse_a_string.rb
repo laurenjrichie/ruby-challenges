@@ -1,27 +1,18 @@
-# Reverse a string in place. In other words, do not create a new string
-# or use other methods on the string such as reverse. The goal of the problem
-# is to use a loop and the string accessors to figure out which values to swap
-# for other values. Below is the output.
-#
-# Enter a string:
-# > reverse_me
-# em_esrever
-
 class Reverse
 
-  def initialize
+  def get_string
     puts "Enter a string"
-    @string = gets.chomp
+    gets.chomp
   end
 
-  def reverse_string
+  def reverse_string(string)
     counter = 0
-    length = @string.length
+    length = string.length
     index = length
     reversed_string = ''
 
     while counter <= length
-      character = "#{@string[index]}"
+      character = "#{string[index]}"
       reversed_string << character
       counter += 1
       index -= 1
@@ -30,7 +21,10 @@ class Reverse
     reversed_string
   end
 
+  def run
+    reverse_string(get_string)
+  end
+
 end
 
-reverse_test = Reverse.new
-p reverse_test.reverse_string
+p Reverse.new.run
