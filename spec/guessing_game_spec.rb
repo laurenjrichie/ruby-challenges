@@ -6,21 +6,28 @@ describe GuessingGame do
     @game = GuessingGame.new
   end
 
-  it 'picks a random number between 1 and 100'
-  # do you test for the stuff in initialize? How to test for random generation?
-
-  xit 'asks the user to guess the number' do
-    expect(@game.initialize).to include("Guess a number between 1 and 100")
+  it 'picks a random number between 1 and 100' do
+    expect(@game.generate_number).to be_between(2, 99).inclusive
   end
 
-  xit 'prompts the user to guess again in the correct direction' do
-    expect(@game.high_or_low?(150)).to eq("The number is lower than 150. Guess again")
+  it 'asks the user to guess the number' do
+    expect(@game.prompt).to eq("Guess a number between 1 and 100")
   end
 
-  xit 'tells the user how many guesses was needed once the number is guessed correctly' do
-    expect(@game.run).to include("You got it in")
+  it 'evaluates whether the guess was high or low and prompts another guess' do
+    guess = 50
+    number = 70
+    @tries == -1 # to bypass run method
+    # can't get both this and the program to work
+
+    expect(@game.high_or_low?(guess, number)).to eq("The number is higher than 50. Guess again")
+  end
+
+  it 'tells the user how many guesses was needed once the number is guessed correctly' do
+    tries = 7
+    # can't get both this and the program to work
+
+    expect(@game.got_it(tries)).to eq("You got it in 7 tries.")
   end
 
 end
-
-# not working!!
