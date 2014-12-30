@@ -4,15 +4,18 @@ require 'temp_convertor'
 describe TempConvertor do
   it 'converts from C to F' do
     convertor = TempConvertor.new
-    celsius = 25 # does this override what's in the method?
 
-    expect(convertor.celsius_to_fahrenheit).to eq(77.0)
+    expect(convertor.c_to_f(25)).to eq(
+      "25 degrees Celsius is equal to 77.0 degrees Fahrenheit."
+    )
   end
 
-  xit 'converts from F to C' do
+  it 'converts from F to C' do
     convertor = TempConvertor.new
 
-    expect(convertor.fahrenheit_to_celsius).to eq()
+    expect(convertor.f_to_c(75)).to eq(
+      "75 degrees Fahrenheit is equal to 23.89 degrees Celsius."
+    )
   end
 
 end

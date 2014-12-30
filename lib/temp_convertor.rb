@@ -6,29 +6,31 @@ class TempConvertor
     @convertor_choice = gets.chomp
   end
 
-  def get_temp
+  def get_c_temp
+    puts "Enter Celsius Temperature:"
     gets.chomp.to_f
   end
 
-  def celsius_to_fahrenheit
-    puts "Enter Celsius Temperature:"
-    celsius = get_temp
-    fahrenheit = celsius*(9/5.to_f) + 32
-    puts "#{celsius} degrees Celsius is equal to #{fahrenheit.round(2)} degrees Fahrenheit."
+  def get_f_temp
+    puts "Enter Fahrenheit Temperature:"
+    gets.chomp.to_f
   end
 
-  def fahrenheit_to_celsius
-    puts "Enter Fahrenheit Temperature:"
-    fahrenheit = get_temp
-    celsius = (fahrenheit - 32)*(5/9.to_f)
-    puts "#{fahrenheit} degrees Fahrenheit is equal to #{celsius.round(2)} degrees Celsius."
+  def c_to_f(c)
+    f = c*(9/5.to_f) + 32
+    "#{c} degrees Celsius is equal to #{f.round(2)} degrees Fahrenheit."
+  end
+
+  def f_to_c(f)
+    c = (f - 32)*(5/9.to_f)
+    "#{f} degrees Fahrenheit is equal to #{c.round(2)} degrees Celsius."
   end
 
   def run
     if @convertor_choice == "1"
-      celsius_to_fahrenheit
+      puts c_to_f(get_c_temp)
     elsif @convertor_choice == "2"
-      fahrenheit_to_celsius
+      puts f_to_c(get_f_temp)
     else
       puts "Not a valid choice. Please run the program again."
     end
