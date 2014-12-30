@@ -1,22 +1,18 @@
-# Write code that determines if a given string is a palindrome.
-# Do not use the .reverse() String method. You can use the code
-# you wrote for the above problem.
-
 class PalindromeChecker
 
-  def initialize
+  def get_string
     puts "Enter a string"
-    @string = gets.chomp
+    gets.chomp
   end
 
-  def reverse_string
+  def reverse_string(string)
     counter = 0
-    length = @string.length
+    length = string.length
     index = length
     reversed_string = ''
 
     while counter <= length
-      character = "#{@string[index]}"
+      character = "#{string[index]}"
       reversed_string << character
       counter += 1
       index -= 1
@@ -25,17 +21,18 @@ class PalindromeChecker
     reversed_string
   end
 
-  def evaluate_string
-    if reverse_string == @string
-      puts "#{@string} is a palindrome"
+  def evaluate_string(string, reversed_string)
+    if string == reversed_string
+      "#{string} is a palindrome"
     else
-      puts "#{@string} is NOT a palindrome"
+      "#{string} is NOT a palindrome"
     end
   end
 
   def run
-    reverse_string
-    evaluate_string
+    string = get_string
+    reversed_string = reverse_string(string)
+    puts evaluate_string(string, reversed_string)
   end
 
 end
