@@ -5,42 +5,43 @@ class MultiplicationTable
     @total_columns = columns
   end
 
-  def print_column_headings
-    n = 1
-    @total_columns.times do
-      print "    #{n}"
-      n += 1
-    end
-
-    print "\n\n"
+  def column_headings
+      n = 1
+      headings = @total_columns.times do
+        print "    #{n}"
+        n += 1
+      end
+    # headings
+    blank_line = "\n\n"
   end
 
-  def print_row_heading(row)
-    print "#{row}|  "
+  def row_heading(row)
+    heading = "#{row}|  "
   end
 
-  def print_number(number)
-    if number.to_s.length == 1
-      print "#{number}    "
+  def number(num)
+    if num.to_s.length == 1
+      result = "#{num}    "
     else
-      print "#{number}   "
+      result = "#{num}   "
     end
+    result
   end
 
   def print_row(row)
     column = 1
     while column <= @total_columns
       number = row*column
-      print_number(number)
+      print number(number)
       column += 1
     end
   end
 
   def create_table
-    print_column_headings
+    print column_headings
     row = 1
     while row <= @total_rows
-      print_row_heading(row)
+      print row_heading(row)
       print_row(row)
       print "\n"
       row += 1

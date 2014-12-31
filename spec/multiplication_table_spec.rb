@@ -7,14 +7,23 @@ describe MultiplicationTable do
   end
 
   it 'prints a row of column headings' do
-    column_headings = @table.print_column_headings
-    expect(column_headings).to eq(
-      "    1    2    3    4    5    6    7    8    9"
-    )
+    def capture_stdout(&block)
+      original_stdout = $stdout
+      $stdout = fake = StringIO.new
+      begin
+        yield
+      ensure
+        $stdout = original_stdout
+      end
+      fake.string
+    end
+
+    output = capture_stdout { @table.column_headings }
+    expect(output).to eq("    1    2    3    4    5    6    7    8    9")
   end
 
-  xit 'prints a heading for a single row' do
-    expect(@table.print_row(5)).to eq("5|  ")
+  it 'prints a heading for a single row' do
+    expect(@table.row_heading(5)).to eq("5|  ")
   end
 
   xit 'prints a single row' do
@@ -24,8 +33,8 @@ describe MultiplicationTable do
   end
 
   xit 'accounts for spacing of single and double digit numbers' do
-    expect(@table.print_number(6)).to eq("6    ")
-    expect(@table.print_number(66)).to eq("66   ")
+    expect(@table.number(6)).to eq("6    ")
+    expect(@table.number(66)).to eq("66   ")
   end
 
   xit 'prints a complete, spaced table' do
@@ -44,5 +53,3 @@ describe MultiplicationTable do
     )
   end
 end
-
-# not working! getting nil
