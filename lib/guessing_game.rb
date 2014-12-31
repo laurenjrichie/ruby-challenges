@@ -17,18 +17,19 @@ class GuessingGame
   end
 
   def another_prompt(direction, guess)
-    puts "The number is #{direction} than #{guess}. Guess again"
+    puts result = "The number is #{direction} than #{guess}. Guess again"
+    result
   end
 
-  def high_or_low?(guess, number)
+  def high_or_low?(guess, number, run_again)
     if guess < number
       @tries = @tries + 1
       result = another_prompt("higher", guess)
-      run
+      run if run_again == true
     elsif guess > number
       @tries = @tries + 1
       result = another_prompt("lower", guess)
-      run
+      run if run_again == true
     elsif guess == number
       result = got_it(@tries)
     end
@@ -36,7 +37,8 @@ class GuessingGame
   end
 
   def got_it(tries)
-    puts "You got it in #{tries} tries."
+    puts congrats = "You got it in #{tries} tries."
+    congrats
   end
 
   def run
@@ -44,13 +46,13 @@ class GuessingGame
       generate_number
       puts prompt
       guess = get_guess
-      puts high_or_low?(guess, @number)
+      high_or_low?(guess, @number, true)
     else
       guess = get_guess
-      high_or_low?(guess, @number)
+      high_or_low?(guess, @number, true)
     end
   end
 
 end
 
-# GuessingGame.new.run
+GuessingGame.new.run  # comment this out to make tests pass

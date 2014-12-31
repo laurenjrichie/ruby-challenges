@@ -17,15 +17,13 @@ describe GuessingGame do
   it 'evaluates whether the guess was high or low and prompts another guess' do
     guess = 50
     number = 70
-    @tries == -1 # to bypass run method
-    # can't get both this and the program to work
+    run_again = false
 
-    expect(@game.high_or_low?(guess, number)).to eq("The number is higher than 50. Guess again")
+    expect(@game.high_or_low?(guess, number, run_again)).to eq("The number is higher than 50. Guess again")
   end
 
   it 'tells the user how many guesses was needed once the number is guessed correctly' do
     tries = 7
-    # can't get both this and the program to work
 
     expect(@game.got_it(tries)).to eq("You got it in 7 tries.")
   end
